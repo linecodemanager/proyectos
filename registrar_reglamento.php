@@ -73,32 +73,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <div class="form-group bmd-form-group">
-                                        <label class="label-control">Curso</label>
-                                        <input type="text" style="text-transform:uppercase;" name="cursoapren" id="cursoapren" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group bmd-form-group">
-                                        <label class="label-control">Numero de ficha</label>
-                                        <input type="number" style="text-transform:uppercase;"  id="Numficha" name="Numficha" class="form-control" >
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group bmd-form-group">
-                                        <label for="precio_und" class="label-control">Correo</label>
-                                        <input type="text" id="correoapren"  name="correoapren" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group bmd-form-group">
-                                        <label class="label-control">Numero de celular</label>
-                                        <input type="number" style="text-transform:uppercase;" name="Numcelular" id="Numcelular" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
                             <button type="submit" class="btn btn-primary pull-right">Finalizar</button>
                         </form>
                     </div>

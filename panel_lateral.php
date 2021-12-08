@@ -16,7 +16,23 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Reglamento</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="fa fa-puzzle-piece"></i><a href="registrar_reglamento.php">Nuevo reglamento</a></li>
-                            <li><i class="fa fa-puzzle-piece"></i><a href="registrar_articulo.php">Nuevo articulo</a></li>
+                            <li><i class="fa fa-puzzle-piece"></i><a href="listar_reglamento.php">listar</a></li>
+                            <li><i class="fa fa-id-badge"></i><a href="listar.php">Listar</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Articulo</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="fa fa-puzzle-piece"></i><a href="registrar_articulo.php">Nuevo </a></li>
+                            <li><i class="fa fa-puzzle-piece"></i><a href="listar_articulo.php">Listar</a></li>
+                            <li><i class="fa fa-id-badge"></i><a href="listar.php">Listar</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Llamados de atención</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="fa fa-puzzle-piece"></i><a href="registrar_llatencion.php">Nuevo </a></li>
+                            <li><i class="fa fa-puzzle-piece"></i><a href="registrar_articulo.php">Listar</a></li>
                             <li><i class="fa fa-id-badge"></i><a href="listar.php">Listar</a></li>
                         </ul>
                     </li>
