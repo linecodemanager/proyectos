@@ -10,6 +10,35 @@
     <?php include('headen.php');?>
 </head>
 <body>
+  <?php
+  include("bd.php");
+$num_documeto = '';
+$nombre= '';
+$apellido = '';
+$grupo= '';
+$curso = '';
+$numficha= '';
+$correo = '';
+$numcelular= '';
+
+
+if  (isset($_GET['Num_Documento'])) {
+  $num_documeto = $_GET['Num_Documento'];
+  $query = "SELECT * FROM aprendiz WHERE Num_Documento=$num_documeto";
+  $result = mysqli_query($conn, $query);
+  if (mysqli_num_rows($result) == 1) {
+    $row = mysqli_fetch_array($result);
+   
+    $nombre = $row['Nombre'];
+    $apellido = $row['Apellido'];
+    $grupo = $row['Grupo'];
+    $curso = $row['Curso'];
+    $numficha = $row['Numficha'];
+    $correo = $row['Correo'];
+    $numcelular = $row['Numcelular'];
+  }
+}
+?>
 <?php include("bd.php"); ?>
     <?php
     include('navbar.php');
@@ -37,35 +66,35 @@
                         <?php session_unset(); } ?>
                 <div class="card">
                     <div class="card-header card-header-primary">
-                        <h4 class="card-title">Registro de aprendices</h4>
+                        <h4 class="card-title">Actualizar aprendices</h4>
                         <p class="card-category">Complete el formulario</p>
                     </div>
                     <div class="card-body">
                         
-                        <form action="registrar.php" method="post" enctype="multipart/form-data" name="f1" id="forinventario">
+                        <form action="actualizacion.php?Num_Documento=<?php echo $_GET['Num_Documento']; ?>" method="post" enctype="multipart/form-data" name="f1" id="foraprendiz">
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="form-group bmd-form-group">
                                         <label class="label-control" id="Num_Documento">Documento</label>
-                                        <input type="number" style="text-transform:uppercase;" name="Num_Documento_re" id="Num_Documento_re" class="form-control">
+                                        <input type="number" style="text-transform:uppercase;" value="<?php echo $num_documeto; ?>" name="Num_Documento_ac" id="Num_Documento_ac" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group bmd-form-group">
                                         <label class="label-control">Nombre</label>
-                                        <input type="text" style="text-transform:uppercase;" name="nombre_apren_re" id="nombre_apren_re"   class="form-control">
+                                        <input type="text" style="text-transform:uppercase;" value="<?php echo $nombre; ?>" name="nombre_apren_ac" id="nombre_apren_ac"   class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group bmd-form-group">
                                         <label class="label-control">Apellido</label>
-                                        <input type="text" style="text-transform:uppercase;" name="apell_apren_re" id="apell_apren_re" class="form-control">
+                                        <input type="text" style="text-transform:uppercase;" value="<?php echo $apellido; ?>" name="apell_apren_ac" id="apell_apren_ac" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group bmd-form-group">
                                         <label class="label-control">Grupo</label>
-                                        <input type="text" style="text-transform:uppercase;" name="grupoapren_re" id="grupoapren_re" class="form-control">
+                                        <input type="text" style="text-transform:uppercase;" value="<?php echo $grupo; ?>" name="grupoapren_ac" id="grupoapren_ac" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -73,29 +102,29 @@
                                 <div class="col-md-3">
                                     <div class="form-group bmd-form-group">
                                         <label class="label-control">Curso</label>
-                                        <input type="text" style="text-transform:uppercase;" name="cursoapren_re" id="cursoapren_re" class="form-control">
+                                        <input type="text" style="text-transform:uppercase;" value="<?php echo $curso; ?>" name="cursoapren_ac" id="cursoapren_ac" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group bmd-form-group">
                                         <label class="label-control">Numero de ficha</label>
-                                        <input type="number" style="text-transform:uppercase;"  id="Numficha_re" name="Numficha_re" class="form-control" >
+                                        <input type="number" style="text-transform:uppercase;" value="<?php echo $numficha; ?>" id="Numficha_ac" name="Numficha_ac" class="form-control" >
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group bmd-form-group">
                                         <label for="precio_und" class="label-control">Correo</label>
-                                        <input type="text" id="correoapren_re"  name="correoapren_re" class="form-control">
+                                        <input type="text" id="correoapren_ac" value="<?php echo $correo; ?>"  name="correoapren_ac" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group bmd-form-group">
                                         <label class="label-control">Numero de celular</label>
-                                        <input type="number" style="text-transform:uppercase;" name="Numcelular_re" id="Numcelular_re" class="form-control">
+                                        <input type="number" style="text-transform:uppercase;" value="<?php echo $numcelular; ?>"  name="Numcelular_ac" id="Numcelular_ac" class="form-control">
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" name="registrar_aprendiz" class="btn btn-primary pull-right">Finalizar</button>
+                            <button type="submit" name="actua_aprendiz" class="btn btn-primary pull-right">Finalizar</button>
                         </form>
                     </div>
                 </div>

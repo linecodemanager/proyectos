@@ -17,6 +17,23 @@
     <?php
     include('panel_lateral.php');
     ?>
+     <?php
+    
+    $query = "SELECT * FROM articulo ";
+    $result = mysqli_query($conn, $query);
+    $row = mysqli_fetch_array($result);
+    /*if (mysqli_num_rows($result) == 1) {
+        
+        $nombre = $row['Nombre'];
+        $apellido = $row['Apellido'];
+        $grupo = $row['Grupo'];
+        $curso = $row['Curso'];
+        $numficha = $row['Numficha'];
+        $correo = $row['Correo'];
+        $numcelular = $row['Numcelular'];
+    }*/
+    
+    ?>
     </aside>
     <div class="container">
     <div class="login-logo">
@@ -36,8 +53,8 @@
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="form-group bmd-form-group">
-                                        <label class="label-control" id="Num_Documento">Capitulo</label>
-                                        <select name="capitulo"  class="form-control selectpicker " data-style="btn btn-link" data-size="7" data-title="Elegir un capitulo" >
+                                        <label class="label-control" id="capitulo_re">Capitulo</label>
+                                        <select name="capitulo_re" id="capitulo_re" class="form-control selectpicker " data-style="btn btn-link" data-size="7" data-title="Elegir un capitulo" >
                                             <option value="">Selecciona un capitulo</option>
                                             <?php 
                                             for($cont = 0; $cont <=500; $cont++)
