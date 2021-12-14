@@ -19,7 +19,7 @@
     ?>
     </aside>
     <div class="container">
-    <div class="login-logo">
+        <div class="login-logo">
                     <a href="index.html">
                         <img class="align-content" src="images/logo22.png" alt="">
                     </a>
@@ -36,17 +36,8 @@
                             <div class="row">
                             <div class="col-md-4">
                                     <div class="form-group bmd-form-group">
-                                        <label class="bmd-label-static">Articulo numero?</label>
-                                        <select name="articulo_id"  class="form-control selectpicker " data-style="btn btn-link" data-size="7" data-title="Elegir un numero" >
-                                            <?php 
-                                            for($cont = 0; $cont <=500; $cont++)
-                                            {
-                                                
-                                           echo'<option value="'.$cont++.'">'.$cont++.'</option>';
-                                           
-                                            }
-                                                ?>
-                                        </select>
+                                        <label class="bmd-label-static">Articulo</label>
+                                        <input name="articulo_id" type="number" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md 6">

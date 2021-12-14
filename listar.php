@@ -1,330 +1,272 @@
-<?php
-include('pagina_de_inicio.php')
-?>
-<div class="content">
-            <div class="animated fadeIn">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-header">
-                                <strong class="card-title">Custom Table</strong>
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+<head>
+    <?php $title = 'Inicio'; ?>
+    <?php $metaTags = 'pagina de inicio'; ?>
+    <?php $currentPage = 'index'; ?>
+    <?php include('headen.php');?>
+</head>
+<body>
+<?php include("bd.php"); ?>
+    <?php
+    include('navbar.php');
+    ?>
+    <aside id="left-panel" class="left-panel">
+    <?php
+    include('panel_lateral.php');
+    ?>
+    </aside>
+<div class="content fa-align-center">
+    <div class="container">
+        <div class="col-md-12 ml-auto mr-auto">
+                        <div class="login-logo">
+                                <img class="align-content" src="images/logo22.png" alt="">
+                        </div>
+                        <?php if (isset($_SESSION['message'])) { ?>
+                        <div class="alert alert-<?= $_SESSION['message_type']?> alert-dismissible fade show" role="alert">
+                        <?= $_SESSION['message']?>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <?php session_unset(); } ?>
+                        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link active" id="pills-aprendiz-tab" data-toggle="pill" href="#pills-aprendiz" role="tab" aria-controls="pills-aprendiz" aria-selected="true">Aprendices</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="pills-instrutores-tab" data-toggle="pill" href="#pills-instrutores" role="tab" aria-controls="pills-instrutores" aria-selected="false">Instructor</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="pills-reglamento-tab" data-toggle="pill" href="#pills-reglamento" role="tab" aria-controls="pills-reglamento" aria-selected="false">Reglamento</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="pills-articulo-tab" data-toggle="pill" href="#pills-articulo" role="tab" aria-controls="pills-articulo" aria-selected="false">Articulo</a>
+                            </li>
+                        </ul>
+                <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-aprendiz" role="tabpanel" aria-labelledby="pills-aprendiz-tab">  
+                            <div class="container p-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <strong class="card-title">Aprendices</strong>
+                                    </div>
+                                    <div class="card-body" >
+                                        <table class="table table-striped table-bordered nowrap">
+                                        <thead>
+                                            <tr>
+                                                <th>CC</th>
+                                                <th>Nombre completo</th>
+                                                <th>Curso</th>
+                                                <th># Ficha</th>
+                                                <th>Correo</th>
+                                                <th>Celular</th>
+                                                <th>Fecha</th>
+                                                <th>Opciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <?php
+                                            $query = "SELECT * FROM aprendiz";
+                                            $result_tasks = mysqli_query($conn, $query);    
+
+                                            while($row = mysqli_fetch_assoc($result_tasks)) { ?>
+                                            <tr>
+                                                <td><?php echo $row['Num_Documento']; ?></td>
+                                                <td><?php echo $row['Nombre_apren'];?>  <?php echo $row['Apellido_apren']; ?></td>
+                                                <td><?php echo $row['Curso_apren']; ?></td>
+                                                <td><?php echo $row['Numficha_apren']; ?></td>
+                                                <td><?php echo $row['Correo_apren']; ?></td>
+                                                <td><?php echo $row['Numcelular_apren']; ?></td>
+                                                <td><?php echo date('d/m/Y:h:i', strtotime($row['Fecha_apren'])); ?></td>
+                                                <td>
+                                                <a href="editaprendiz.php?Num_Documento=<?php echo $row['Num_Documento']?>" class="btn btn-primary active" role="button">Actualizar</a>
+                                                <br>
+                                                <a href="eliminar.php?Num_Documento=<?php echo $row['Num_Documento']?>" class="btn btn-warning active" role="button">Eliminar</a>
+                                                </td>
+                                            </tr>
+                                            <?php } ?>
+                                        </tbody>
+                                        </table>
+                                    </div> <!-- /.table-stats -->
+                                </div>
                             </div>
-                            <div class="table-stats order-table ov-h">
-                                <table class="table ">
-                                    <thead>
-                                        <tr>
-                                            <th class="serial">#</th>
-                                            <th class="avatar">Avatar</th>
-                                            <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Product</th>
-                                            <th>Quantity</th>
-                                            <th>Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td class="serial">1.</td>
-                                            <td class="avatar">
-                                                <div class="round-img">
-                                                    <a href="#"><img class="rounded-circle" src="images/avatar/1.jpg" alt=""></a>
-                                                </div>
-                                            </td>
-                                            <td> #5469 </td>
-                                            <td>  <span class="name">Louis Stanley</span> </td>
-                                            <td> <span class="product">iMax</span> </td>
-                                            <td><span class="count">231</span></td>
-                                            <td>
-                                                <span class="badge badge-complete">Complete</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="serial">2.</td>
-                                            <td class="avatar">
-                                                <div class="round-img">
-                                                    <a href="#"><img class="rounded-circle" src="images/avatar/2.jpg" alt=""></a>
-                                                </div>
-                                            </td>
-                                            <td> #5468 </td>
-                                            <td>  <span class="name">Gregory Dixon</span> </td>
-                                            <td> <span class="product">iPad</span> </td>
-                                            <td><span class="count">250</span></td>
-                                            <td>
-                                                <span class="badge badge-complete">Complete</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="serial">3.</td>
-                                            <td class="avatar">
-                                                <div class="round-img">
-                                                    <a href="#"><img class="rounded-circle" src="images/avatar/3.jpg" alt=""></a>
-                                                </div>
-                                            </td>
-                                            <td> #5467 </td>
-                                            <td>  <span class="name">Catherine Dixon</span> </td>
-                                            <td> <span class="product">SSD</span> </td>
-                                            <td><span class="count">250</span></td>
-                                            <td>
-                                                <span class="badge badge-complete">Complete</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="serial">4.</td>
-                                            <td class="avatar">
-                                                <div class="round-img">
-                                                    <a href="#"><img class="rounded-circle" src="images/avatar/4.jpg" alt=""></a>
-                                                </div>
-                                            </td>
-                                            <td> #5466 </td>
-                                            <td>  <span class="name">Mary Silva</span> </td>
-                                            <td> <span class="product">Magic Mouse</span> </td>
-                                            <td><span class="count">250</span></td>
-                                            <td>
-                                                <span class="badge badge-pending">Pending</span>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div> <!-- /.table-stats -->
                         </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-header">
-                                <strong class="card-title">Basic Table</strong>
+                            <div class="tab-pane fade show" id="pills-instrutores" role="tabpanel" aria-labelledby="pills-instrutores-tab">  
+                                <div class="container p-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <strong class="card-title">Lista de instructores</strong>
+                                        </div>
+                                        <div class="card-body" >
+                                            <table class="table table-striped table-bordered nowrap">
+                                            <thead>
+                                                <tr>
+                                                    <th>Idetidad</th>
+                                                    <th>Nombre completo</th>
+                                                    <th>Titulo</th>
+                                                    <th>Correo</th>
+                                                    <th>Celular</th>
+                                                    <th>Fecha</th>
+                                                    <th>Opciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                <?php
+                                                $query = "SELECT * FROM instructor";
+                                                $result_tasks = mysqli_query($conn, $query);    
+
+                                                while($row = mysqli_fetch_assoc($result_tasks)) { ?>
+                                                <tr>
+                                                    <td><?php echo $row['id_instru']; ?></td>
+                                                    <td><?php echo $row['Nombre_instru'];?>  <?php echo $row['Apellido_instru']; ?></td>
+                                                    <td><?php echo $row['Titulo_instru']; ?></td>
+                                                    <td><?php echo $row['Correo_instru']; ?></td>
+                                                    <td><?php echo $row['Numcelular_instru']; ?></td>
+                                                    <td><?php echo date('d/m/Y:h:i', strtotime($row['fecha_instru'])); ?></td>
+                                                    <td>
+                                                    <a href="editarinstrutor.php?id_instru=<?php echo $row['id_instru']?>" class="btn btn-primary active" role="button">Actualizar</a>
+                                                    <br>
+                                                    <a href="eliminar.php?id_instru=<?php echo $row['id_instru']?>" class="btn btn-warning active" role="button">Eliminar</a>
+                                                    </td>
+                                                </tr>
+                                                <?php } ?>
+                                            </tbody>
+                                            </table>
+                                        </div> <!-- /.table-stats -->
+                                    </div>
+                                </div>
                             </div>
-                            <div class="card-body">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                          <th scope="col">#</th>
-                                          <th scope="col">First</th>
-                                          <th scope="col">Last</th>
-                                          <th scope="col">Handle</th>
-                                      </tr>
-                                  </thead>
-                                  <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="card">
-                        <div class="card-header">
-                            <strong class="card-title">Stripped Table</strong>
-                        </div>
-                        <div class="card-body">
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">First</th>
-                                        <th scope="col">Last</th>
-                                        <th scope="col">Handle</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="card">
-                        <div class="card-header">
-                            <strong class="card-title">Table Dark</strong>
-                        </div>
-                        <div class="card-body">
-                            <table class="table table-dark">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">First</th>
-                                        <th scope="col">Last</th>
-                                        <th scope="col">Handle</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+                            <div class="tab-pane fade" id="pills-reglamento" role="tabpanel" aria-labelledby="pills-reglamento-tab">
+                                <div class="container p-12">
+                                    <div class="card">
+                                            <div class="card-header">
+                                                <strong class="card-title">Lista de reglamento</strong>
+                                            </div>
+                                        <div class="card-body" >
+                                            <table class="table table-striped table-bordered nowrap">
+                                            <thead>
+                                                <tr>
+                                                    <th>Capitulo</th>
+                                                    <th>Titulo</th>
+                                                    <th>Descripcion</th>
+                                                    <th>Fecha</th>
+                                                    <th>Opciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                $query = "SELECT * FROM reglamento";
+                                                $result_tasks = mysqli_query($conn, $query);    
 
-                <div class="col-lg-6">
-                    <div class="card">
-                        <div class="card-header">
-                            <strong class="card-title">Table Head</strong>
-                        </div>
-                        <div class="card-body">
-                            <table class="table">
-                                <thead class="thead-dark">
-                                    <tr>
-                                      <th scope="col">#</th>
-                                      <th scope="col">First</th>
-                                      <th scope="col">Last</th>
-                                      <th scope="col">Handle</th>
-                                  </tr>
-                              </thead>
-                              <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>@twitter</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                                while($row = mysqli_fetch_assoc($result_tasks)) { ?>
+                                                <tr>
+                                                    <td><?php echo $row['id_regla']; ?></td>
+                                                    <td><?php echo $row['Titulo_regla'];?></td>
+                                                    <td><?php echo $row['Descripcion_regla']; ?></td>
+                                                    <td><?php echo date('d/m/Y:h:i', strtotime($row['Fecha_regla'])); ?></td>
+                                                    <td>
+                                                    <a href="editareglamento.php?id_regla=<?php echo $row['id_regla']?>" class="btn btn-primary active" role="button">Actualizar</a>
+                                                    <br>
+                                                    <a href="eliminar.php?id_regla=<?php echo $row['id_regla']?>" class="btn btn-warning active" role="button">Eliminar</a>
+                                                    </td>
+                                                </tr>
+                                                <?php } ?>
+                                            </tbody>
+                                            </table>
+                                        </div> <!-- /.table-stats -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="pills-articulo" role="tabpanel" aria-labelledby="pills-articulo-tab">
+                                <div class="container p-12">
+                                    <div class="card">
+                                            <div class="card-header">
+                                                <strong class="card-title">Lista de Articulo</strong>
+                                            </div>
+                                        <div class="card-body" >
+                                            <table class="table table-striped table-bordered nowrap">
+                                            <thead>
+                                                <tr>
+                                                    <th>Articulo</th>
+                                                    <th>Paragrafo</th>
+                                                    <th>Fecha</th>
+                                                    <th>Opciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                $query = "SELECT * FROM articulo";
+                                                $result_tasks = mysqli_query($conn, $query);    
 
-                    </div>
+                                                while($row = mysqli_fetch_assoc($result_tasks)) { ?>
+                                                <tr>
+                                                    <td><?php echo $row['id_arti']; ?></td>
+                                                    <td><?php echo $row['paragrafo'];?></td>
+                                                    <td><?php echo date('d/m/Y:h:i', strtotime($row['fecha_arti'])); ?></td>
+                                                    <td>
+                                                    <a href="editareglamento.php?id_regla=<?php echo $row['id_regla']?>" class="btn btn-primary active" role="button">Actualizar</a>
+                                                    <br>
+                                                    <a href="eliminar.php?id_regla=<?php echo $row['id_regla']?>" class="btn btn-warning active" role="button">Eliminar</a>
+                                                    </td>
+                                                </tr>
+                                                <?php } ?>
+                                            </tbody>
+                                            </table>
+                                        </div> <!-- /.table-stats -->
+                                    </div>
+                                </div>
+                            </div>
                 </div>
-            </div>
-
-
-
-
-            <div class="col-lg-6">
-                <div class="card">
-                    <div class="card-header">
-                        <strong class="card-title">Bordered Table</strong>
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">First</th>
-                                    <th scope="col">Last</th>
-                                    <th scope="col">Handle</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td colspan="2">Larry the Bird</td>
-                                    <td>@twitter</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="card">
-                    <div class="card-header">
-                        <strong class="card-title">Bordered Dark Table</strong>
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-bordered table-dark">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">First</th>
-                                    <th scope="col">Last</th>
-                                    <th scope="col">Handle</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td colspan="2">Larry the Bird</td>
-                                    <td>@twitter</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
         </div>
-        
+    </div>
+</div>
+    <!-- Right Panel -->
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+    <script src="../js/console_ubigeo.js"></script>
+    <script>
+    // In your Javascript (external .js resource or <script> tag)
+        $(document).ready(function() {
+            $('.js-example-basic-single').select2();
+        });
+    </script>
+    <script type="text/javascript">
+	$(document).ready(function(){
+		$('#llaten_reglamento_id_re').val(1);
+		recargarLista();
+
+		$('#llaten_reglamento_id_re').change(function(){
+			recargarLista();
+		});
+	})
+</script>
+<script type="text/javascript">
+	function recargarLista(){
+		$.ajax({
+			type:"POST",
+			url:"datos.php",
+			data:"continente=" + $('#llaten_reglamento_id_re').val(),
+			success:function(r){
+				$('#select2lista').html(r);
+			}
+		});
+	}
+    </script>
+</body>
+
+</html>

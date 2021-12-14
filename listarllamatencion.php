@@ -19,7 +19,7 @@
     include('panel_lateral.php');
     ?>
     </aside>
-        <div class="container p-12">
+        <div class="container p-4">
             <div class="card">
                 <div class="login-logo">
                     <img class="align-content" src="images/logo22.png" alt="">
@@ -33,42 +33,47 @@
                         </div>
                         <?php session_unset(); } ?>
                     <div class="card-header">
-                        <strong class="card-title">Aprendices</strong>
+                        <strong class="card-title">Llamados de atencion</strong>
                     </div>
                     <div class="card-body" >
                         <table class="table table-striped table-bordered nowrap">
                         <thead>
                             <tr>
-                                <th>CC</th>
-                                <th>Nombre completo</th>
-                                <th>Curso</th>
-                                <th># Ficha</th>
-                                <th>Correo</th>
-                                <th>Celular</th>
+                                <th>#</th>
+                                <th>Intructor</th>
+                                <th>Reglamento</th>
+                                <th>Descripcion</th>
+                                <th>Aprendiz</th>
+                                <th>Ficha Apr</th>
                                 <th>Fecha</th>
-                                <th>Opciones</th>
                             </tr>
                         </thead>
                         <tbody>
-
                             <?php
-                            $query = "SELECT * FROM aprendiz";
+                            $query = "SELECT * FROM llamados_de_atencion,aprendiz_llam_atencion
+                            ,instructor_llam_atencion
+                            ,instructor,aprendiz
+                            ,reglamento,articulo
+                             WHERE llamados_de_atencion.id_llamatencion = aprendiz_llam_atencion.id_llamatencion 
+                             AND llamados_de_atencion.id_llamatencion = instructor_llam_atencion.Id_llamado_atencionfk 
+                             AND instructor.id_instru = instructor_llam_atencion.id_instructor_fk 
+                             AND aprendiz.Num_Documento = aprendiz_llam_atencion.Num_Documento 
+                             AND llamados_de_atencion.Id_reglamentofk = reglamento.id_regla 
+                             AND llamados_de_atencion.id_articulo_fk = articulo.id_arti";
                             $result_tasks = mysqli_query($conn, $query);    
-
                             while($row = mysqli_fetch_assoc($result_tasks)) { ?>
                             <tr>
-                                <td><?php echo $row['Num_Documento']; ?></td>
-                                <td><?php echo $row['Nombre_apren'];?>  <?php echo $row['Apellido_apren']; ?></td>
-                                <td><?php echo $row['Curso_apren']; ?></td>
-                                <td><?php echo $row['Numficha_apren']; ?></td>
-                                <td><?php echo $row['Correo_apren']; ?></td>
-                                <td><?php echo $row['Numcelular_apren']; ?></td>
-                                <td><?php echo date('d/m/Y:h:i', strtotime($row['Fecha_apren'])); ?></td>
-                                <td>
-                                <a href="editaprendiz.php?Num_Documento=<?php echo $row['Num_Documento']?>" class="btn btn-primary active" role="button">Actualizar</a>
-                                <br>
-                                <a href="eliminar.php?Num_Documento=<?php echo $row['Num_Documento']?>" class="btn btn-warning active" role="button">Eliminar</a>
+                                <td><?php echo $row['Id_llamado_atencionfk']; ?></td>
+                                <td><?php echo $row['Nombre_instru'];?>  <?php echo $row['Apellido_instru']; ?></td>
+                                <td><?php echo $row['Titulo_regla']; ?></td>
+                                <td data-search="<?php echo $row['Descripcion_llam']; ?>" class="text-center">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                Ver descripcion
+                                </button>
                                 </td>
+                                <td><?php echo $row['Nombre_apren'];?>  <?php echo $row['Apellido_apren']; ?></td>
+                                <td><?php echo $row['Numficha_apren']; ?></td>
+                                <td><?php echo date('d/m/Y:h:i', strtotime($row['fecha_llam'])); ?></td>
                             </tr>
                             <?php } ?>
                         </tbody>
@@ -77,7 +82,26 @@
                 </div>
         </div>
         <!-- Right Panel -->
-
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
@@ -97,6 +121,14 @@
  
     new $.fn.dataTable.FixedHeader( table );
 } );
+$(function () {
+  $('.example-popover').popover({
+    container: 'body'
+  })
+})
+$(function () {
+  $('[data-toggle="popover"]').popover()
+})
     </script>       
 </body>
 </html>

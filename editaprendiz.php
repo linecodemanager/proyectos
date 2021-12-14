@@ -29,13 +29,12 @@ if  (isset($_GET['Num_Documento'])) {
   if (mysqli_num_rows($result) == 1) {
     $row = mysqli_fetch_array($result);
    
-    $nombre = $row['Nombre'];
-    $apellido = $row['Apellido'];
-    $grupo = $row['Grupo'];
-    $curso = $row['Curso'];
-    $numficha = $row['Numficha'];
-    $correo = $row['Correo'];
-    $numcelular = $row['Numcelular'];
+    $nombre = $row['Nombre_apren'];
+    $apellido = $row['Apellido_apren'];
+    $curso = $row['Curso_apren'];
+    $numficha = $row['Numficha_apren'];
+    $correo = $row['Correo_apren'];
+    $numcelular = $row['Numcelular_apren'];
   }
 }
 ?>
@@ -69,64 +68,57 @@ if  (isset($_GET['Num_Documento'])) {
                         <h4 class="card-title">Actualizar aprendices</h4>
                         <p class="card-category">Complete el formulario</p>
                     </div>
-                    <div class="card-body">
-                        
-                        <form action="actualizacion.php?Num_Documento=<?php echo $_GET['Num_Documento']; ?>" method="post" enctype="multipart/form-data" name="f1" id="foraprendiz">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <div class="form-group bmd-form-group">
-                                        <label class="label-control" id="Num_Documento">Documento</label>
-                                        <input type="number" style="text-transform:uppercase;" value="<?php echo $num_documeto; ?>" name="Num_Documento_ac" id="Num_Documento_ac" class="form-control">
+                        <div class="card-body">
+                            <form action="actualizacion.php?Num_Documento=<?php echo $_GET['Num_Documento']; ?>" method="post" enctype="multipart/form-data" name="f1" id="foraprendiz">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group bmd-form-group">
+                                            <label class="label-control" id="Num_Documento">Documento</label>
+                                            <input type="number" style="text-transform:uppercase;" maxlength="15" value="<?php echo $num_documeto; ?>" name="Num_Documento_ac" id="Num_Documento_ac" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group bmd-form-group">
+                                            <label class="label-control">Nombre</label>
+                                            <input type="text" style="text-transform:uppercase;" value="<?php echo $nombre; ?>" name="nombre_apren_ac" id="nombre_apren_ac"   class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group bmd-form-group">
+                                            <label class="label-control">Apellido</label>
+                                            <input type="text" style="text-transform:uppercase;" value="<?php echo $apellido; ?>" name="apell_apren_ac" id="apell_apren_ac" class="form-control">
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <div class="form-group bmd-form-group">
-                                        <label class="label-control">Nombre</label>
-                                        <input type="text" style="text-transform:uppercase;" value="<?php echo $nombre; ?>" name="nombre_apren_ac" id="nombre_apren_ac"   class="form-control">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group bmd-form-group">
+                                            <label class="label-control">Curso</label>
+                                            <input type="text" style="text-transform:uppercase;" value="<?php echo $curso; ?>" name="cursoapren_ac" id="cursoapren_ac" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group bmd-form-group">
+                                            <label class="label-control">Numero de ficha</label>
+                                            <input type="number" style="text-transform:uppercase;" value="<?php echo $numficha; ?>" id="Numficha_ac" name="Numficha_ac" class="form-control" >
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group bmd-form-group">
+                                            <label for="precio_und" class="label-control">Correo</label>
+                                            <input type="email" id="correoapren_ac" value="<?php echo $correo; ?>"  name="correoapren_ac" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group bmd-form-group">
+                                            <label class="label-control">Numero de celular</label>
+                                            <input type="tel" style="text-transform:uppercase;" pattern="\[0-9]{3}\ [0-9]{3}[ -][0-9]{4}" title="Un número de teléfono válido consta de un área de código de 3 dígitos entre paréntesis, un espacio, los tres primeros dígitos del número, un espacio o guión (-) y cuatro dígitos más." value="<?php echo $numcelular; ?>"  name="Numcelular_ac" id="Numcelular_ac" class="form-control">
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <div class="form-group bmd-form-group">
-                                        <label class="label-control">Apellido</label>
-                                        <input type="text" style="text-transform:uppercase;" value="<?php echo $apellido; ?>" name="apell_apren_ac" id="apell_apren_ac" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group bmd-form-group">
-                                        <label class="label-control">Grupo</label>
-                                        <input type="text" style="text-transform:uppercase;" value="<?php echo $grupo; ?>" name="grupoapren_ac" id="grupoapren_ac" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <div class="form-group bmd-form-group">
-                                        <label class="label-control">Curso</label>
-                                        <input type="text" style="text-transform:uppercase;" value="<?php echo $curso; ?>" name="cursoapren_ac" id="cursoapren_ac" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group bmd-form-group">
-                                        <label class="label-control">Numero de ficha</label>
-                                        <input type="number" style="text-transform:uppercase;" value="<?php echo $numficha; ?>" id="Numficha_ac" name="Numficha_ac" class="form-control" >
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group bmd-form-group">
-                                        <label for="precio_und" class="label-control">Correo</label>
-                                        <input type="text" id="correoapren_ac" value="<?php echo $correo; ?>"  name="correoapren_ac" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group bmd-form-group">
-                                        <label class="label-control">Numero de celular</label>
-                                        <input type="number" style="text-transform:uppercase;" value="<?php echo $numcelular; ?>"  name="Numcelular_ac" id="Numcelular_ac" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <button type="submit" name="actua_aprendiz" class="btn btn-primary pull-right">Finalizar</button>
-                        </form>
-                    </div>
+                                <button type="submit" name="actua_aprendiz" class="btn btn-primary pull-right">Finalizar</button>
+                            </form>
+                        </div>
                 </div>
             </div>
         </div>
