@@ -69,13 +69,13 @@
                                                     <div class="col-md-3">
                                                         <div class="form-group bmd-form-group">
                                                             <label class="label-control">Nombre</label>
-                                                            <input type="text" style="text-transform:uppercase;" name="nombre_apren_re" id="nombre_apren_re"   class="form-control" required>
+                                                            <input type="text" style="text-transform:uppercase;" onkeypress="return soloLetras(event)" onblur="limpia()" name="nombre_apren_re" id="nombre_apren_re"   class="form-control" required>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group bmd-form-group">
                                                             <label class="label-control">Apellido</label>
-                                                            <input type="text" style="text-transform:uppercase;" name="apell_apren_re" id="apell_apren_re" class="form-control" required>
+                                                            <input type="text" style="text-transform:uppercase;" onkeypress="return soloLetras(event)" onblur="limpia()" name="apell_apren_re" id="apell_apren_re" class="form-control" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -130,13 +130,13 @@
                                             <div class="col-md-3">
                                                 <div class="form-group bmd-form-group">
                                                     <label class="label-control">Nombre</label>
-                                                    <input type="text" style="text-transform:uppercase;" name="nombre_intrutor_re" id="nombre_intrutor_re"   class="form-control" required>
+                                                    <input type="text" style="text-transform:uppercase;" onkeypress="return soloLetras(event)" onblur="limpia()" name="nombre_intrutor_re" id="nombre_intrutor_re"   class="form-control" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group bmd-form-group">
                                                     <label class="label-control">Apellido</label>
-                                                    <input type="text" style="text-transform:uppercase;" name="apell_intrutor_re" id="apell_intrutor_re" class="form-control" required>
+                                                    <input type="text" style="text-transform:uppercase;" onkeypress="return soloLetras(event)" onblur="limpia()" name="apell_intrutor_re" id="apell_intrutor_re" class="form-control" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -354,6 +354,31 @@
 			}
 		});
 	}
+    function soloLetras(e) {
+      key = e.keyCode || e.which;
+      tecla = String.fromCharCode(key).toLowerCase();
+      letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
+      especiales = [8, 37, 39, 46];
+  
+      tecla_especial = false
+      for(var i in especiales) {
+          if(key == especiales[i]) {
+              tecla_especial = true;
+              break;
+          }
+      }
+  
+      if(letras.indexOf(tecla) == -1 && !tecla_especial)
+          return false;
+  }
+  function limpia() {
+      var val = document.getElementById("miInput").value;
+      var tam = val.length;
+      for(i = 0; i < tam; i++) {
+          if(!isNaN(val[i]))
+              document.getElementById("miInput").value = '';
+      }
+  }
     </script>
 </body>
 
