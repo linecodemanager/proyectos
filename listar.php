@@ -55,7 +55,8 @@
                                         <strong class="card-title">Aprendices</strong>
                                     </div>
                                     <div class="card-body" >
-                                        <table class="table table-striped table-bordered nowrap">
+                                    <div class="table-responsive">
+                                        <table id="example" class="table table-striped table-bordered">
                                         <thead>
                                             <tr>
                                                 <th>CC</th>
@@ -92,6 +93,7 @@
                                             <?php } ?>
                                         </tbody>
                                         </table>
+                                    </div>
                                     </div> <!-- /.table-stats -->
                                 </div>
                             </div>
@@ -103,7 +105,8 @@
                                             <strong class="card-title">Lista de instructores</strong>
                                         </div>
                                         <div class="card-body" >
-                                            <table class="table table-striped table-bordered nowrap">
+                                        <div class="table-responsive">
+                                            <table id="example" class="table table-striped table-bordered">
                                             <thead>
                                                 <tr>
                                                     <th>Idetidad</th>
@@ -132,12 +135,13 @@
                                                     <td>
                                                     <a href="editarinstrutor.php?id_instru=<?php echo $row['id_instru']?>" class="btn btn-primary active" role="button">Actualizar</a>
                                                     <br>
-                                                    <a href="eliminar.php?id_instru=<?php echo $row['id_instru']?>" class="btn btn-warning active" role="button">Eliminar</a>
-                                                    </td>
+                                                    <a href="eliminar.php?id_instru=<?php echo $row['id_instru']?>" class="btn btn-warning active" role="button">Eliminar</a>   
+                                                    </td>   
                                                 </tr>
                                                 <?php } ?>
                                             </tbody>
                                             </table>
+                                        </div>
                                         </div> <!-- /.table-stats -->
                                     </div>
                                 </div>
@@ -149,7 +153,8 @@
                                                 <strong class="card-title">Lista de reglamento</strong>
                                             </div>
                                         <div class="card-body" >
-                                            <table class="table table-striped table-bordered nowrap">
+                                        <div class="table-responsive">
+                                            <table id="example" class="table table-striped table-bordered">
                                             <thead>
                                                 <tr>
                                                     <th>Capitulo</th>
@@ -171,7 +176,7 @@
                                                     <td><?php echo $row['Descripcion_regla']; ?></td>
                                                     <td><?php echo date('d/m/Y:h:i', strtotime($row['Fecha_regla'])); ?></td>
                                                     <td>
-                                                    <a href="editareglamento.php?id_regla=<?php echo $row['id_regla']?>" class="btn btn-primary active" role="button">Actualizar</a>
+                                                    <a href="editarreglamento.php?id_regla=<?php echo $row['id_regla']?>" class="btn btn-primary active" role="button">Actualizar</a>
                                                     <br>
                                                     <a href="eliminar.php?id_regla=<?php echo $row['id_regla']?>" class="btn btn-warning active" role="button">Eliminar</a>
                                                     </td>
@@ -179,6 +184,7 @@
                                                 <?php } ?>
                                             </tbody>
                                             </table>
+                                        </div>
                                         </div> <!-- /.table-stats -->
                                     </div>
                                 </div>
@@ -190,40 +196,45 @@
                                                 <strong class="card-title">Lista de Articulo</strong>
                                             </div>
                                         <div class="card-body" >
-                                            <table class="table table-striped table-bordered nowrap">
-                                            <thead>
-                                                <tr>
-                                                    <th>Articulo</th>
-                                                    <th>Paragrafo</th>
-                                                    <th>Fecha</th>
-                                                    <th>Opciones</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php
-                                                $query = "SELECT * FROM articulo";
-                                                $result_tasks = mysqli_query($conn, $query);    
+                                        <div class="table-responsive">
+                                            <table id="example" class="table table-striped table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Articulo</th>
+                                                        <th>Paragrafo</th>
+                                                        <th>Fecha</th>
+                                                        <th>Opciones</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <?php
+                                                    $query = "SELECT * FROM articulo";
+                                                    $result_tasks = mysqli_query($conn, $query);    
 
-                                                while($row = mysqli_fetch_assoc($result_tasks)) { ?>
-                                                <tr>
-                                                    <td><?php echo $row['id_arti']; ?></td>
-                                                    <td><?php echo $row['paragrafo'];?></td>
-                                                    <td><?php echo date('d/m/Y:h:i', strtotime($row['fecha_arti'])); ?></td>
-                                                    <td>
-                                                    <a href="editareglamento.php?id_regla=<?php echo $row['id_regla']?>" class="btn btn-primary active" role="button">Actualizar</a>
-                                                    <br>
-                                                    <a href="eliminar.php?id_regla=<?php echo $row['id_regla']?>" class="btn btn-warning active" role="button">Eliminar</a>
-                                                    </td>
-                                                </tr>
-                                                <?php } ?>
-                                            </tbody>
+                                                    while($row = mysqli_fetch_assoc($result_tasks)) { ?>
+                                                    <tr>
+                                                        <td><?php echo $row['id_arti']; ?></td>
+                                                        <td><?php echo $row['paragrafo'];?></td>
+                                                        <td><?php echo date('d/m/Y:h:i', strtotime($row['fecha_arti'])); ?></td>
+                                                        <td>
+                                                        <a href="editararticulo.php?id_arti=<?php echo $row['id_arti']?>" class="btn btn-primary active" role="button">Actualizar</a>
+                                                        <br>
+                                                        <a href="eliminar.php?id_arti=<?php echo $row['id_arti']?>" class="btn btn-warning active" role="button">Eliminar</a>
+                                                        </td>
+                                                    </tr>
+                                                    <?php } ?>
+                                                </tbody>
                                             </table>
+                                        </div>
                                         </div> <!-- /.table-stats -->
                                     </div>
                                 </div>
                             </div>
                 </div>
         </div>
+        <footer class="site-footer">
+        <?php include("footer.php");?>
+        </footer>
     </div>
 </div>
     <!-- Right Panel -->
@@ -266,6 +277,13 @@
 			}
 		});
 	}
+    $(document).ready(function() {
+    var table = $('#example').DataTable( {
+        responsive: true
+    } );
+ 
+    new $.fn.dataTable.FixedHeader( table );
+} );
     </script>
 </body>
 

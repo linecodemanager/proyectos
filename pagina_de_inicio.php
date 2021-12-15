@@ -156,7 +156,7 @@
                                             <div class="col-md-3">
                                                 <div class="form-group bmd-form-group">
                                                     <label class="label-control">Numero de celular</label>
-                                                    <input type="number" style="text-transform:uppercase;" name="Numcelularintrutor_re" id="Numcelularintrutor_re"class="form-control" required>
+                                                    <input type="tel" style="text-transform:uppercase;" name="Numcelularintrutor_re" id="Numcelularintrutor_re"class="form-control" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -307,8 +307,13 @@
                         </div>
                 </div>
         </div>
+        <footer class="site-footer">
+        <?php include("footer.php");?>
+        </footer>
     </div>
+    
 </div>
+
     <!-- Right Panel -->
 
     <!-- Scripts -->

@@ -121,7 +121,29 @@ if  (isset($_GET['Num_Documento'])) {
                         </div>
                 </div>
             </div>
+            <footer class="site-footer">
+            <?php include("footer.php");?>
+            </footer>
         </div>
     </div>
 </body>
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+    <script src="../js/console_ubigeo.js"></script>
+    <script>
+        $(document).ready(function() {
+    var table = $('#example').DataTable( {
+        responsive: true
+    } );
+    new $.fn.dataTable.FixedHeader( table );
+    } );
+    </script>  
 </html>

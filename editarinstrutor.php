@@ -68,7 +68,7 @@ if  (isset($_GET['id_instru'])) {
                                     <p class="card-category">Complete el formulario</p>
                                 </div>
                                 <div class="card-body">
-                                    <form action="actualizacion.php" method="post" enctype="multipart/form-data" name="f1" id="forinventario">
+                                    <form action="actualizacion.php?id_instru=<?php echo $_GET['id_instru']; ?>" method="post" enctype="multipart/form-data" name="f1" id="forinventario">
                                         <div class="row">
                                             <div class="col-md-3">
                                                 <div class="form-group bmd-form-group">
@@ -99,13 +99,13 @@ if  (isset($_GET['id_instru'])) {
                                             <div class="col-md-3">
                                                 <div class="form-group bmd-form-group">
                                                     <label for="precio_und" class="label-control">Correo</label>
-                                                    <input type="text" id="correointrutor_act" value="<?php echo $Correo_instru; ?>"  name="correointrutor_act" class="form-control" required>
+                                                    <input type="email" id="correointrutor_act" value="<?php echo $Correo_instru; ?>"  name="correointrutor_act" class="form-control" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group bmd-form-group">
                                                     <label class="label-control">Numero de celular</label>
-                                                    <input type="number" style="text-transform:uppercase;" value="<?php echo $Numcelular_instru; ?>" name="Numcelularintrutor_act" id="Numcelularintrutor_act"class="form-control" required>
+                                                    <input type="tel" style="text-transform:uppercase;" value="<?php echo $Numcelular_instru; ?>" name="Numcelularintrutor_act" id="Numcelularintrutor_act"class="form-control" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -114,7 +114,30 @@ if  (isset($_GET['id_instru'])) {
                                 </div>
                             </div>
             </div>
+            <footer class="site-footer">
+        <?php include("footer.php");?>
+        </footer>
         </div>
     </div>
 </body>
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+    <script src="../js/console_ubigeo.js"></script>
+    <script>
+        $(document).ready(function() {
+    var table = $('#example').DataTable( {
+        responsive: true
+    } );
+ 
+    new $.fn.dataTable.FixedHeader( table );
+} );
+    </script>  
 </html>

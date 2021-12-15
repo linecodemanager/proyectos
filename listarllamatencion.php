@@ -19,7 +19,7 @@
     include('panel_lateral.php');
     ?>
     </aside>
-        <div class="container p-4">
+        <div class="container ">
             <div class="card">
                 <div class="login-logo">
                     <img class="align-content" src="images/logo22.png" alt="">
@@ -36,16 +36,18 @@
                         <strong class="card-title">Llamados de atencion</strong>
                     </div>
                     <div class="card-body" >
-                        <table class="table table-striped table-bordered nowrap">
+                      <div class="table-responsive">
+                        <table id="example" class="table table-striped table-bordered">
                         <thead>
                             <tr>
-                                <th>#</th>
+                                <th>ID</th>
                                 <th>Intructor</th>
                                 <th>Reglamento</th>
                                 <th>Descripcion</th>
                                 <th>Aprendiz</th>
                                 <th>Ficha Apr</th>
                                 <th>Fecha</th>
+                                <th>Opciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -63,45 +65,32 @@
                             $result_tasks = mysqli_query($conn, $query);    
                             while($row = mysqli_fetch_assoc($result_tasks)) { ?>
                             <tr>
-                                <td><?php echo $row['Id_llamado_atencionfk']; ?></td>
+                                <td><?php echo $row['id_llamatencion']; ?></td>
                                 <td><?php echo $row['Nombre_instru'];?>  <?php echo $row['Apellido_instru']; ?></td>
                                 <td><?php echo $row['Titulo_regla']; ?></td>
                                 <td data-search="<?php echo $row['Descripcion_llam']; ?>" class="text-center">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                Ver descripcion
-                                </button>
+                                <?php echo $row['Descripcion_llam'];?>
                                 </td>
                                 <td><?php echo $row['Nombre_apren'];?>  <?php echo $row['Apellido_apren']; ?></td>
                                 <td><?php echo $row['Numficha_apren']; ?></td>
                                 <td><?php echo date('d/m/Y:h:i', strtotime($row['fecha_llam'])); ?></td>
+                                <td>
+                                <a href="eliminar.php?id_llamatencion=<?php echo $row['id_llamatencion']?>" onclick="event.preventDefault();
+                                                                          eliminar_material_calle()" class="btn btn-warning active" role="button">Eliminar</a>
+                                </td>
                             </tr>
                             <?php } ?>
                         </tbody>
                         </table>
-                    </div> <!-- /.table-stats -->
+                      </div>
+                    </div>
+                    <footer class="site-footer">
+        <?php include("footer.php");?>
+        </footer> <!-- /.table-stats -->
                 </div>
         </div>
         <!-- Right Panel -->
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
+
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
@@ -129,6 +118,9 @@ $(function () {
 $(function () {
   $('[data-toggle="popover"]').popover()
 })
+$(document).ready(function() {
+    $('#example').DataTable();
+} );
     </script>       
 </body>
 </html>
