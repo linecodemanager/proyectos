@@ -63,7 +63,7 @@
                                                     <div class="col-md-3">
                                                         <div class="form-group bmd-form-group">
                                                             <label class="label-control" id="Num_Documento">Documento</label>
-                                                            <input type="number" style="text-transform:uppercase;" maxlength="15" name="Num_Documento_re" id="Num_Documento_re" class="form-control" required>
+                                                            <input type="tel" style="text-transform:uppercase;" onkeypress="return solonumeros(event)" onblur="limpia()" maxlength="10" name="Num_Documento_re" id="Num_Documento_re" class="form-control" required>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
@@ -101,7 +101,7 @@
                                                     <div class="col-md-3">
                                                         <div class="form-group bmd-form-group">
                                                             <label class="label-control">Numero de celular</label>
-                                                            <input type="tel" style="text-transform:uppercase;" maxlength="10" name="Numcelular_re" id="Numcelular_re" class="form-control" required>
+                                                            <input type="tel" style="text-transform:uppercase;" onkeypress="return solonumeros(event)" onblur="limpia()" maxlength="10" name="Numcelular_re" id="Numcelular_re" class="form-control" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -124,7 +124,7 @@
                                             <div class="col-md-3">
                                                 <div class="form-group bmd-form-group">
                                                     <label class="label-control" id="id_intrutor_re">Identidad</label>
-                                                    <input type="number" style="text-transform:uppercase;" name="id_intrutor_re" id="id_intrutor_re" class="form-control" required>
+                                                    <input type="tel" style="text-transform:uppercase;" onkeypress="return solonumeros(event)" onblur="limpia()" maxlength="10" name="id_intrutor_re" id="id_intrutor_re" class="form-control" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
@@ -156,7 +156,7 @@
                                             <div class="col-md-3">
                                                 <div class="form-group bmd-form-group">
                                                     <label class="label-control">Numero de celular</label>
-                                                    <input type="tel" style="text-transform:uppercase;" name="Numcelularintrutor_re" id="Numcelularintrutor_re"class="form-control" required>
+                                                    <input type="tel" style="text-transform:uppercase;" onkeypress="return solonumeros(event)" onblur="limpia()" maxlength="10" name="Numcelularintrutor_re" id="Numcelularintrutor_re"class="form-control" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -378,6 +378,23 @@
           if(!isNaN(val[i]))
               document.getElementById("miInput").value = '';
       }
+  }
+  function solonumeros(e) {
+      key = e.keyCode || e.which;
+      tecla = String.fromCharCode(key).toLowerCase();
+      letras = " 0123456789";
+      especiales = [8, 37, 39, 46];
+  
+      tecla_especial = false
+      for(var i in especiales) {
+          if(key == especiales[i]) {
+              tecla_especial = true;
+              break;
+          }
+      }
+  
+      if(letras.indexOf(tecla) == -1 && !tecla_especial)
+          return false;
   }
     </script>
 </body>
