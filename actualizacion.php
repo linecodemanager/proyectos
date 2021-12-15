@@ -52,9 +52,9 @@ if (isset($_POST['actua_reglamento'])) {
   {
     die("Consulta fallida. datos duplicados no se puede cambiar el capitulo".mysqli_error($conn));
   }
-$_SESSION['message'] = 'Registro actualizado con exito';
-$_SESSION['message_type'] = 'warning';
-header('Location: listar.php');
+  $_SESSION['message'] = 'Registro actualizado con exito';
+  $_SESSION['message_type'] = 'warning';
+  header('Location: listar.php');
 }
 
 if (isset($_POST['actua_articulo'])) {

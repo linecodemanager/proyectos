@@ -75,8 +75,7 @@
                                 <td><?php echo $row['Numficha_apren']; ?></td>
                                 <td><?php echo date('d/m/Y:h:i', strtotime($row['fecha_llam'])); ?></td>
                                 <td>
-                                <a href="eliminar.php?id_llamatencion=<?php echo $row['id_llamatencion']?>" onclick="event.preventDefault();
-                                                                          eliminar_material_calle()" class="btn btn-warning active" role="button">Eliminar</a>
+                                <a href="#" onclick="confirmar(<?php echo $row['id_llamatencion']?>)" class="btn btn-warning active" role="button">Eliminar</a>
                                 </td>
                             </tr>
                             <?php } ?>
@@ -104,23 +103,32 @@
     <script src="../js/console_ubigeo.js"></script>
     <script>
         $(document).ready(function() {
-    var table = $('#example').DataTable( {
-        responsive: true
-    } );
+        var table = $('#example').DataTable( {
+            responsive: true
+        } );
  
-    new $.fn.dataTable.FixedHeader( table );
-} );
-$(function () {
-  $('.example-popover').popover({
-    container: 'body'
-  })
-})
-$(function () {
-  $('[data-toggle="popover"]').popover()
-})
-$(document).ready(function() {
-    $('#example').DataTable();
-} );
+            new $.fn.dataTable.FixedHeader( table );
+        } );
+        $(function () {
+        $('.example-popover').popover({
+            container: 'body'
+        })
+        })
+        $(function () {
+        $('[data-toggle="popover"]').popover()
+        })
+        $(document).ready(function() {
+            $('#example').DataTable();
+            
+        } );
+        function confirmar(id){
+          if(confirm("¿Esta seguro de eliminar el registro?"))
+          {
+              window.location.href = "eliminar.php?id_llamatencion="+id;
+          }
+        }
+        
+
     </script>       
 </body>
 </html>

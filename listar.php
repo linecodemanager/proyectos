@@ -87,7 +87,7 @@
                                                 <td>
                                                 <a href="editaprendiz.php?Num_Documento=<?php echo $row['Num_Documento']?>" class="btn btn-primary active" role="button">Actualizar</a>
                                                 <br>
-                                                <a href="eliminar.php?Num_Documento=<?php echo $row['Num_Documento']?>" class="btn btn-warning active" role="button">Eliminar</a>
+                                                <a href="#" onclick="confirmaraprendiz(<?php echo $row['Num_Documento']?>)" class="btn btn-warning active" role="button">Eliminar</a>
                                                 </td>
                                             </tr>
                                             <?php } ?>
@@ -135,7 +135,7 @@
                                                     <td>
                                                     <a href="editarinstrutor.php?id_instru=<?php echo $row['id_instru']?>" class="btn btn-primary active" role="button">Actualizar</a>
                                                     <br>
-                                                    <a href="eliminar.php?id_instru=<?php echo $row['id_instru']?>" class="btn btn-warning active" role="button">Eliminar</a>   
+                                                    <a href="#" onclick="confirmarinstrutor(<?php echo $row['id_instru']?>)" class="btn btn-warning active" role="button">Eliminar</a>   
                                                     </td>   
                                                 </tr>
                                                 <?php } ?>
@@ -178,7 +178,7 @@
                                                     <td>
                                                     <a href="editarreglamento.php?id_regla=<?php echo $row['id_regla']?>" class="btn btn-primary active" role="button">Actualizar</a>
                                                     <br>
-                                                    <a href="eliminar.php?id_regla=<?php echo $row['id_regla']?>" class="btn btn-warning active" role="button">Eliminar</a>
+                                                    <a href="#" onclick="confirmararticulo(<?php echo $row['id_regla']?>)" class="btn btn-warning active" role="button">Eliminar</a>
                                                     </td>
                                                 </tr>
                                                 <?php } ?>
@@ -219,7 +219,7 @@
                                                         <td>
                                                         <a href="editararticulo.php?id_arti=<?php echo $row['id_arti']?>" class="btn btn-primary active" role="button">Actualizar</a>
                                                         <br>
-                                                        <a href="eliminar.php?id_arti=<?php echo $row['id_arti']?>" class="btn btn-warning active" role="button">Eliminar</a>
+                                                        <a href="#" onclick="confirmararticulo(<?php echo $row['id_arti']?>)" class="btn btn-warning active" role="button">Eliminar</a>
                                                         </td>
                                                     </tr>
                                                     <?php } ?>
@@ -284,6 +284,33 @@
  
     new $.fn.dataTable.FixedHeader( table );
 } );
+        function confirmaraprendiz(id){
+          if(confirm("¿Esta seguro de eliminar el registro?"))
+          {
+              window.location.href = "eliminar.php?Num_Documento=="+id;
+          }
+        }
+
+        function confirmarinstrutor(id){
+          if(confirm("¿Esta seguro de eliminar el registro?"))
+          {
+              window.location.href = "eliminar.php?id_instru="+id;
+          }
+        }
+
+        function confirmarreglamento(id){
+          if(confirm("¿Esta seguro de eliminar el registro?"))
+          {
+              window.location.href = "eliminar.php?id_regla="+id;
+          }
+        }
+
+        function confirmararticulo(id){
+          if(confirm("¿Esta seguro de eliminar el registro?"))
+          {
+              window.location.href = "eliminar.php?id_arti="+id;
+          }
+        }
     </script>
 </body>
 
