@@ -7,7 +7,7 @@
                     </li>
                     <li class="menu-title">Registro</li><!-- /.menu-title -->
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Operaciones</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="menu-icon fa fa-cogs"></i>Operaciones</a>
                         <ul class="sub-menu children dropdown-menu"><li><i class="fa fa-puzzle-piece"></i><a href="pagina_de_inicio.php">Nuevo registro</a></li>
                             <li><i class="fa fa-id-badge"></i><a href="listar.php">Listar</a></li>
                         </ul>

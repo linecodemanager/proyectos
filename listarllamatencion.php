@@ -4,8 +4,8 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
 <head>
-    <?php $title = 'Listar aprendiz'; ?>
-    <?php $metaTags = 'pagina de listado de aprendiz'; ?>
+    <?php $title = 'Lista de llamado de atencion'; ?>
+    <?php $metaTags = 'pagina de listado de llamado de atencion'; ?>
     <?php $currentPage = 'index'; ?>
     <?php include('headen.php');?>
 </head>
