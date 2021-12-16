@@ -31,11 +31,6 @@ if  (isset($_GET['id_arti'])) {
     <?php
     include('navbar.php');
     ?>
-    <aside id="left-panel" class="left-panel">
-    <?php
-    include('panel_lateral.php');
-    ?>
-    </aside>
 <div class="container">
     <div class="login-logo">
                     <a href="index.html">

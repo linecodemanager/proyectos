@@ -14,11 +14,6 @@
     <?php
     include('navbar.php');
     ?>
-    <aside id="left-panel" class="left-panel">
-    <?php
-    include('panel_lateral.php');
-    ?>
-    </aside>
 <div class="content fa-align-center">
     <div class="container">
         <div class="col-md-12 ml-auto mr-auto">

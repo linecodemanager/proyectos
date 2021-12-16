@@ -14,11 +14,6 @@
     <?php
     include('navbar.php');
     ?>
-    <aside id="left-panel" class="left-panel">
-    <?php
-    include('panel_lateral.php');
-    ?>
-    </aside>
 <div class="content fa-align-center">
     <div class="container">
         <div class="col-md-12 ml-auto mr-auto">
@@ -178,7 +173,7 @@
                                                     <td>
                                                     <a href="editarreglamento.php?id_regla=<?php echo $row['id_regla']?>" class="btn btn-primary active" role="button">Actualizar</a>
                                                     <br>
-                                                    <a href="#" onclick="confirmararticulo(<?php echo $row['id_regla']?>)" class="btn btn-warning active" role="button">Eliminar</a>
+                                                    <a href="#" onclick="confirmarreglamento(<?php echo $row['id_regla']?>)" class="btn btn-warning active" role="button">Eliminar</a>
                                                     </td>
                                                 </tr>
                                                 <?php } ?>

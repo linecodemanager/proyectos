@@ -48,7 +48,7 @@ if(isset($_GET['id_instru'])) {
 
   $_SESSION['message'] = 'Registro eliminado con exito';
   $_SESSION['message_type'] = 'success';
-  header('Location: listarllamatencion.php');
+  header('Location: listar.php');
 }
 //Eliminar registro del reglamento
 if(isset($_GET['id_regla'])) {
@@ -61,11 +61,13 @@ if(isset($_GET['id_regla'])) {
     $_SESSION['message'] = 'El registro no se puede eliminar porque esta asociado a llamado de atencion';
   $_SESSION['message_type'] = 'danger';
   header('Location: listar.php');
+  }else{
+    $_SESSION['message'] = 'Registro eliminado con exito';
+    $_SESSION['message_type'] = 'success';
+    header('Location: listar.php');
   }
 
-  $_SESSION['message'] = 'Registro eliminado con exito';
-  $_SESSION['message_type'] = 'success';
-  header('Location: listarllamatencion.php');
+  
 }
 //Eliminar registro del articulo
 if(isset($_GET['id_arti'])) {
@@ -80,10 +82,12 @@ if(isset($_GET['id_arti'])) {
     $_SESSION['message'] = 'El registro no se puede eliminar porque esta asociado a llamado de atencion';
     $_SESSION['message_type'] = 'danger';
     header('Location: listar.php');
+  }else{
+
+    $_SESSION['message'] = 'Registro eliminado con exito';
+    $_SESSION['message_type'] = 'success';
+    header('Location: listar.php');
   }
 
-  $_SESSION['message'] = 'Registro eliminado con exito';
-  $_SESSION['message_type'] = 'success';
-  header('Location: listarllamatencion.php');
 }
 ?>
