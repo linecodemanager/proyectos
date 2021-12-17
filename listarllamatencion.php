@@ -66,7 +66,7 @@
                                 <td><?php echo $row['Titulo_regla']; ?></td>
                                 <td><?php echo $row['Titulo_regla']; ?></td>
                                 <td class="text-center">
-                                <textarea class="form-control"rows="3" disabled><?php echo $row['Descripcion_llam'];?></textarea></td>
+                                <textarea rows="3" disabled><?php echo $row['Descripcion_llam'];?></textarea></td>
                                 
                                 </td>
                                 <td><?php echo $row['Nombre_apren'];?>  <?php echo $row['Apellido_apren']; ?></td>

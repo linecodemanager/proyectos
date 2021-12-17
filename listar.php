@@ -168,7 +168,7 @@
                                                 <tr>
                                                     <td><?php echo $reglamento->id_regla ?></td>
                                                     <td><?php echo $reglamento->Titulo_regla ?></td>
-                                                    <td><textarea class="form-control"rows="3" disabled><?php echo $reglamento->Descripcion_regla ?></textarea></td>
+                                                    <td><textarea rows="3" disabled><?php echo $reglamento->Descripcion_regla ?></textarea></td>
                                                     <td><?php echo date('d/m/Y:h:i', strtotime($reglamento->Fecha_regla)) ?></td>
                                                     <td>
                                                         <table class="table table-bordered">
@@ -186,7 +186,7 @@
                                                                 ?>
                                                                 <tr>
                                                                     <td><?php echo $articulo[0] ?></td>
-                                                                    <td><textarea class="form-control"rows="3" disabled><?php echo $articulo[1] ?></textarea></td>
+                                                                    <td><textarea rows="3" disabled><?php echo $articulo[1] ?></textarea></td>
                                                                     <td><?php echo date('d/m/Y:h:i', strtotime($articulo[2])) ?></td>
                                                                     <td>
                                                                     <a href="editararticulo.php?id_arti=<?php echo $articulo[0]?>" class="btn btn-primary active" role="button">Actualizar</a>
@@ -270,7 +270,7 @@
         function confirmaraprendiz(id){
           if(confirm("¿Esta seguro de eliminar el registro?"))
           {
-              window.location.href = "eliminar.php?Num_Documento=="+id;
+              window.location.href = "eliminar.php?Num_Documento="+id;
           }
         }
 
