@@ -1,5 +1,8 @@
 <?php
-session_start();
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+} 
 //conexion de la base de datos
 $conn = mysqli_connect(
   'localhost',

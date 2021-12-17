@@ -15,7 +15,7 @@ if (isset($_POST['actua_aprendiz'])) {
    Numcelular_apren = '$Numcelular_ac' WHERE Num_Documento=$num_documeto";
   mysqli_query($conn, $query);
   $_SESSION['message'] = 'Registro actualizado con exito';
-  $_SESSION['message_type'] = 'warning';
+  $_SESSION['message_type'] = 'success';
   header('Location: listar.php');
 }
 
@@ -36,7 +36,7 @@ if (isset($_POST['actua_instrutor'])) {
       die("Consulta fallida.".mysqli_error($conn));
     }
   $_SESSION['message'] = 'Registro actualizado con exito';
-  $_SESSION['message_type'] = 'warning';
+  $_SESSION['message_type'] = 'success';
   header('Location: listar.php');
 }
 
@@ -53,7 +53,7 @@ if (isset($_POST['actua_reglamento'])) {
     die("Consulta fallida. datos duplicados no se puede cambiar el capitulo".mysqli_error($conn));
   }
   $_SESSION['message'] = 'Registro actualizado con exito';
-  $_SESSION['message_type'] = 'warning';
+  $_SESSION['message_type'] = 'success';
   header('Location: listar.php');
 }
 

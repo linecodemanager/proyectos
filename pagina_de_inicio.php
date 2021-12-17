@@ -255,6 +255,7 @@
                                                     
                                                 </div>
                                             </div>
+                                            <input type="hidden" id="llaten_articulo_id_re" name="llaten_articulo_id_re">
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
@@ -286,6 +287,14 @@
                                                     </select>
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="row">
+                                        <div class="col-md 12">
+                                                    <div class="form-group bmd-form-group">
+                                                        <label class="label-control">Paragrafo</label>
+                                                        <textarea class="form-control" style="text-transform:uppercase;" id="paragrafo" name="paragrafo" rows="3"></textarea>
+                                                    </div>
+                                                </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-12">
@@ -332,7 +341,6 @@
 	$(document).ready(function(){
 		$('#llaten_reglamento_id_re').val(1);
 		recargarLista();
-
 		$('#llaten_reglamento_id_re').change(function(){
 			recargarLista();
 		});
@@ -392,6 +400,17 @@
           return false;
   }
     </script>
+
+<script type="text/javascript">
+    $("#llaten_articulo_id_rep").change(mostrarvalores);
+
+  function mostrarvalores(){
+          datosArtuculo=document.getElementById('llaten_articulo_id_rep').value.split('_');
+          $("#llaten_articulo_id_re").val(datosArtuculo[0]);
+          $("#paragrafo").val(datosArtuculo[1]);
+      }
+</script>
+<div id="resultado"></div>
 </body>
 
 </html>

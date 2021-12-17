@@ -38,6 +38,7 @@
                                 <th>ID</th>
                                 <th>Intructor</th>
                                 <th>Reglamento</th>
+                                <th>Articulo</th>
                                 <th>Descripcion</th>
                                 <th>Aprendiz</th>
                                 <th>Ficha Apr</th>
@@ -63,8 +64,10 @@
                                 <td><?php echo $row['id_llamatencion']; ?></td>
                                 <td><?php echo $row['Nombre_instru'];?>  <?php echo $row['Apellido_instru']; ?></td>
                                 <td><?php echo $row['Titulo_regla']; ?></td>
-                                <td data-search="<?php echo $row['Descripcion_llam']; ?>" class="text-center">
-                                <?php echo $row['Descripcion_llam'];?>
+                                <td><?php echo $row['Titulo_regla']; ?></td>
+                                <td class="text-center">
+                                <textarea class="form-control"rows="3" disabled><?php echo $row['Descripcion_llam'];?></textarea></td>
+                                
                                 </td>
                                 <td><?php echo $row['Nombre_apren'];?>  <?php echo $row['Apellido_apren']; ?></td>
                                 <td><?php echo $row['Numficha_apren']; ?></td>

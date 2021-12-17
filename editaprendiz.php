@@ -69,13 +69,13 @@ if  (isset($_GET['Num_Documento'])) {
                                     <div class="col-md-3">
                                         <div class="form-group bmd-form-group">
                                             <label class="label-control" id="Num_Documento">Documento</label>
-                                            <input type="number" style="text-transform:uppercase;" maxlength="15" value="<?php echo $num_documeto; ?>" name="Num_Documento_ac" id="Num_Documento_ac" class="form-control">
+                                            <input type="tel" style="text-transform:uppercase;"onkeypress="return solonumeros(event)" onblur="limpia()" maxlength="10" value="<?php echo $num_documeto; ?>" name="Num_Documento_ac" id="Num_Documento_ac" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group bmd-form-group">
                                             <label class="label-control">Nombre</label>
-                                            <input type="text" style="text-transform:uppercase;" value="<?php echo $nombre; ?>" name="nombre_apren_ac" id="nombre_apren_ac"   class="form-control">
+                                            <input type="text" style="text-transform:uppercase;" value="<?php echo $nombre; ?>" onkeypress="return soloLetras(event)" onblur="limpia()" name="nombre_apren_ac" id="nombre_apren_ac"   class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
@@ -107,7 +107,7 @@ if  (isset($_GET['Num_Documento'])) {
                                     <div class="col-md-3">
                                         <div class="form-group bmd-form-group">
                                             <label class="label-control">Numero de celular</label>
-                                            <input type="tel" style="text-transform:uppercase;" pattern="\[0-9]{3}\ [0-9]{3}[ -][0-9]{4}" title="Un número de teléfono válido consta de un área de código de 3 dígitos entre paréntesis, un espacio, los tres primeros dígitos del número, un espacio o guión (-) y cuatro dígitos más." value="<?php echo $numcelular; ?>"  name="Numcelular_ac" id="Numcelular_ac" class="form-control">
+                                            <input type="tel" style="text-transform:uppercase;"onkeypress="return solonumeros(event)" onblur="limpia()" maxlength="10" pattern="\[0-9]{3}\ [0-9]{3}[ -][0-9]{4}" title="Un número de teléfono válido consta de un área de código de 3 dígitos entre paréntesis, un espacio, los tres primeros dígitos del número, un espacio o guión (-) y cuatro dígitos más." value="<?php echo $numcelular; ?>"  name="Numcelular_ac" id="Numcelular_ac" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -140,5 +140,48 @@ if  (isset($_GET['Num_Documento'])) {
     } );
     new $.fn.dataTable.FixedHeader( table );
     } );
+
+    function soloLetras(e) {
+      key = e.keyCode || e.which;
+      tecla = String.fromCharCode(key).toLowerCase();
+      letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
+      especiales = [8, 37, 39, 46];
+  
+      tecla_especial = false
+      for(var i in especiales) {
+          if(key == especiales[i]) {
+              tecla_especial = true;
+              break;
+          }
+      }
+  
+      if(letras.indexOf(tecla) == -1 && !tecla_especial)
+          return false;
+  }
+  function limpia() {
+      var val = document.getElementById("miInput").value;
+      var tam = val.length;
+      for(i = 0; i < tam; i++) {
+          if(!isNaN(val[i]))
+              document.getElementById("miInput").value = '';
+      }
+  }
+  function solonumeros(e) {
+      key = e.keyCode || e.which;
+      tecla = String.fromCharCode(key).toLowerCase();
+      letras = " 0123456789";
+      especiales = [8, 37, 39, 46];
+  
+      tecla_especial = false
+      for(var i in especiales) {
+          if(key == especiales[i]) {
+              tecla_especial = true;
+              break;
+          }
+      }
+  
+      if(letras.indexOf(tecla) == -1 && !tecla_especial)
+          return false;
+  }
     </script>  
 </html>

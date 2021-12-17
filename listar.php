@@ -14,8 +14,8 @@
     <?php
     include('navbar.php');
     ?>
-<div class="content fa-align-center">
-    <div class="container">
+
+    <div class="container" >
         <div class="col-md-12 ml-auto mr-auto">
                         <div class="login-logo">
                                 <img class="align-content" src="images/logo22.png" alt="">
@@ -38,14 +38,11 @@
                             <li class="nav-item" role="presentation">
                                 <a class="nav-link" id="pills-reglamento-tab" data-toggle="pill" href="#pills-reglamento" role="tab" aria-controls="pills-reglamento" aria-selected="false">Reglamento</a>
                             </li>
-                            <li class="nav-item" role="presentation">
-                                <a class="nav-link" id="pills-articulo-tab" data-toggle="pill" href="#pills-articulo" role="tab" aria-controls="pills-articulo" aria-selected="false">Articulo</a>
-                            </li>
                         </ul>
                 <div class="tab-content" id="pills-tabContent">
                         <div class="tab-pane fade show active" id="pills-aprendiz" role="tabpanel" aria-labelledby="pills-aprendiz-tab">  
                             <div class="container p-12">
-                                <div class="card">
+                                <div class="card w-500">
                                     <div class="card-header">
                                         <strong class="card-title">Aprendices</strong>
                                     </div>
@@ -95,7 +92,7 @@
                         </div>
                             <div class="tab-pane fade show" id="pills-instrutores" role="tabpanel" aria-labelledby="pills-instrutores-tab">  
                                 <div class="container p-12">
-                                    <div class="card">
+                                    <div class="card w-200">
                                         <div class="card-header">
                                             <strong class="card-title">Lista de instructores</strong>
                                         </div>
@@ -143,7 +140,7 @@
                             </div>
                             <div class="tab-pane fade" id="pills-reglamento" role="tabpanel" aria-labelledby="pills-reglamento-tab">
                                 <div class="container p-12">
-                                    <div class="card">
+                                    <div class="card w-200">
                                             <div class="card-header">
                                                 <strong class="card-title">Lista de reglamento</strong>
                                             </div>
@@ -156,69 +153,61 @@
                                                     <th>Titulo</th>
                                                     <th>Descripcion</th>
                                                     <th>Fecha</th>
+                                                    <th>Articulos</th>
                                                     <th>Opciones</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php
-                                                $query = "SELECT * FROM reglamento";
-                                                $result_tasks = mysqli_query($conn, $query);    
-
-                                                while($row = mysqli_fetch_assoc($result_tasks)) { ?>
+                                            <?php
+                                            include_once "base_de_datos.php";
+                                            $sentencia = $base_de_datos->query("SELECT reglamento.id_regla, reglamento.Titulo_regla, reglamento.Descripcion_regla, reglamento.Fecha_regla, GROUP_CONCAT( articulo.id_arti, '..', articulo.paragrafo, '..', articulo.fecha_arti  SEPARATOR '__') AS articulo FROM reglamento INNER JOIN articulo_reglamento ON articulo_reglamento.id_reglameto = reglamento.id_regla INNER JOIN articulo ON articulo.id_arti = articulo_reglamento.id_articulo GROUP BY reglamento.id_regla ORDER BY reglamento.id_regla;");
+                                            $reglamento = $sentencia->fetchAll(PDO::FETCH_OBJ);
+                                            //$query = "SELECT * from articulo_reglamento,articulo,reglamento where articulo_reglamento.id_articulo = articulo.id_arti and articulo_reglamento.id_reglameto = reglamento.id_regla";
+                                            $result_tasks = mysqli_query($conn, $query);    
+                                            foreach($reglamento as $reglamento){ ?>
                                                 <tr>
-                                                    <td><?php echo $row['id_regla']; ?></td>
-                                                    <td><?php echo $row['Titulo_regla'];?></td>
-                                                    <td><?php echo $row['Descripcion_regla']; ?></td>
-                                                    <td><?php echo date('d/m/Y:h:i', strtotime($row['Fecha_regla'])); ?></td>
+                                                    <td><?php echo $reglamento->id_regla ?></td>
+                                                    <td><?php echo $reglamento->Titulo_regla ?></td>
+                                                    <td><textarea class="form-control"rows="3" disabled><?php echo $reglamento->Descripcion_regla ?></textarea></td>
+                                                    <td><?php echo date('d/m/Y:h:i', strtotime($reglamento->Fecha_regla)) ?></td>
                                                     <td>
-                                                    <a href="editarreglamento.php?id_regla=<?php echo $row['id_regla']?>" class="btn btn-primary active" role="button">Actualizar</a>
-                                                    <br>
-                                                    <a href="#" onclick="confirmarreglamento(<?php echo $row['id_regla']?>)" class="btn btn-warning active" role="button">Eliminar</a>
+                                                        <table class="table table-bordered">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Articulo</th>
+                                                                    <th>Paragrafo</th>
+                                                                    <th>fecha</th>
+                                                                    <th>Opciones</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <?php foreach(explode("__", $reglamento->articulo) as $reglamentosConcatenados){ 
+                                                                $articulo = explode("..", $reglamentosConcatenados)
+                                                                ?>
+                                                                <tr>
+                                                                    <td><?php echo $articulo[0] ?></td>
+                                                                    <td><textarea class="form-control"rows="3" disabled><?php echo $articulo[1] ?></textarea></td>
+                                                                    <td><?php echo date('d/m/Y:h:i', strtotime($articulo[2])) ?></td>
+                                                                    <td>
+                                                                    <a href="editararticulo.php?id_arti=<?php echo $articulo[0]?>" class="btn btn-primary active" role="button">Actualizar</a>
+                                                                    <br>
+                                                                    <a href="#" onclick="confirmararticulo(<?php echo $articulo[0]?>)" class="btn btn-warning active" role="button">Eliminar</a>
+                                                                    </td>
+                                                                </tr>
+                                                                <?php } ?>
+                                                            </tbody>
+                                                        </table>
                                                     </td>
+                                                    <td>
+                                                    <a href="editarreglamento.php?id_regla=<?php echo $reglamento->id_regla?>" class="btn btn-primary active" role="button">Actualizar</a>
+                                                    <br>
+                                                    <a href="#" onclick="confirmarreglamento(<?php echo $reglamento->id_regla?>)" class="btn btn-warning active" role="button">Eliminar</a>
+                                                    </td>
+                                                </tr>
+                                                    
                                                 </tr>
                                                 <?php } ?>
                                             </tbody>
-                                            </table>
-                                        </div>
-                                        </div> <!-- /.table-stats -->
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="pills-articulo" role="tabpanel" aria-labelledby="pills-articulo-tab">
-                                <div class="container p-12">
-                                    <div class="card">
-                                            <div class="card-header">
-                                                <strong class="card-title">Lista de Articulo</strong>
-                                            </div>
-                                        <div class="card-body" >
-                                        <div class="table-responsive">
-                                            <table id="example" class="table table-striped table-bordered">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Articulo</th>
-                                                        <th>Paragrafo</th>
-                                                        <th>Fecha</th>
-                                                        <th>Opciones</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <?php
-                                                    $query = "SELECT * FROM articulo";
-                                                    $result_tasks = mysqli_query($conn, $query);    
-
-                                                    while($row = mysqli_fetch_assoc($result_tasks)) { ?>
-                                                    <tr>
-                                                        <td><?php echo $row['id_arti']; ?></td>
-                                                        <td><?php echo $row['paragrafo'];?></td>
-                                                        <td><?php echo date('d/m/Y:h:i', strtotime($row['fecha_arti'])); ?></td>
-                                                        <td>
-                                                        <a href="editararticulo.php?id_arti=<?php echo $row['id_arti']?>" class="btn btn-primary active" role="button">Actualizar</a>
-                                                        <br>
-                                                        <a href="#" onclick="confirmararticulo(<?php echo $row['id_arti']?>)" class="btn btn-warning active" role="button">Eliminar</a>
-                                                        </td>
-                                                    </tr>
-                                                    <?php } ?>
-                                                </tbody>
                                             </table>
                                         </div>
                                         </div> <!-- /.table-stats -->
@@ -231,7 +220,6 @@
         <?php include("footer.php");?>
         </footer>
     </div>
-</div>
     <!-- Right Panel -->
 
     <!-- Scripts -->

@@ -68,19 +68,19 @@ if  (isset($_GET['id_instru'])) {
                                             <div class="col-md-3">
                                                 <div class="form-group bmd-form-group">
                                                     <label class="label-control" id="id_intrutor_act">Identidad</label>
-                                                    <input type="number" style="text-transform:uppercase;" value="<?php echo $id_instru; ?>" name="id_intrutor_act" id="id_intrutor_act" class="form-control" required>
+                                                    <input type="number" style="text-transform:uppercase;" onkeypress="return solonumeros(event)" onblur="limpia()" maxlength="15" value="<?php echo $id_instru; ?>" name="id_intrutor_act" id="id_intrutor_act" class="form-control" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group bmd-form-group">
                                                     <label class="label-control">Nombre</label>
-                                                    <input type="text" style="text-transform:uppercase;" value="<?php echo $Nombre_instru; ?>" name="nombre_intrutor_act" id="nombre_intrutor_act"   class="form-control" required>
+                                                    <input type="text" style="text-transform:uppercase;" onkeypress="return soloLetras(event)" onblur="limpia()" value="<?php echo $Nombre_instru; ?>" name="nombre_intrutor_act" id="nombre_intrutor_act"   class="form-control" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group bmd-form-group">
                                                     <label class="label-control">Apellido</label>
-                                                    <input type="text" style="text-transform:uppercase;" value="<?php echo $Apellido_instru; ?>" name="apell_intrutor_act" id="apell_intrutor_act" class="form-control" required>
+                                                    <input type="text" style="text-transform:uppercase;" onkeypress="return soloLetras(event)" onblur="limpia()" value="<?php echo $Apellido_instru; ?>" name="apell_intrutor_act" id="apell_intrutor_act" class="form-control" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -88,7 +88,7 @@ if  (isset($_GET['id_instru'])) {
                                             <div class="col-md-3">
                                                 <div class="form-group bmd-form-group">
                                                     <label class="label-control">Titulo</label>
-                                                    <input type="text" style="text-transform:uppercase;" value="<?php echo $Titulo_instru; ?>" name="intru_titulo_act" id="intru_titulo_act" class="form-control" required>
+                                                    <input type="text" style="text-transform:uppercase;" onkeypress="return soloLetras(event)" onblur="limpia()" value="<?php echo $Titulo_instru; ?>" name="intru_titulo_act" id="intru_titulo_act" class="form-control" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
@@ -100,7 +100,7 @@ if  (isset($_GET['id_instru'])) {
                                             <div class="col-md-3">
                                                 <div class="form-group bmd-form-group">
                                                     <label class="label-control">Numero de celular</label>
-                                                    <input type="tel" style="text-transform:uppercase;" value="<?php echo $Numcelular_instru; ?>" name="Numcelularintrutor_act" id="Numcelularintrutor_act"class="form-control" required>
+                                                    <input type="tel" style="text-transform:uppercase;" onkeypress="return solonumeros(event)" onblur="limpia()" maxlength="10" value="<?php echo $Numcelular_instru; ?>" name="Numcelularintrutor_act" id="Numcelularintrutor_act"class="form-control" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -134,5 +134,48 @@ if  (isset($_GET['id_instru'])) {
  
     new $.fn.dataTable.FixedHeader( table );
 } );
+
+function soloLetras(e) {
+      key = e.keyCode || e.which;
+      tecla = String.fromCharCode(key).toLowerCase();
+      letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
+      especiales = [8, 37, 39, 46];
+  
+      tecla_especial = false
+      for(var i in especiales) {
+          if(key == especiales[i]) {
+              tecla_especial = true;
+              break;
+          }
+      }
+  
+      if(letras.indexOf(tecla) == -1 && !tecla_especial)
+          return false;
+  }
+  function limpia() {
+      var val = document.getElementById("miInput").value;
+      var tam = val.length;
+      for(i = 0; i < tam; i++) {
+          if(!isNaN(val[i]))
+              document.getElementById("miInput").value = '';
+      }
+  }
+  function solonumeros(e) {
+      key = e.keyCode || e.which;
+      tecla = String.fromCharCode(key).toLowerCase();
+      letras = " 0123456789";
+      especiales = [8, 37, 39, 46];
+  
+      tecla_especial = false
+      for(var i in especiales) {
+          if(key == especiales[i]) {
+              tecla_especial = true;
+              break;
+          }
+      }
+  
+      if(letras.indexOf(tecla) == -1 && !tecla_especial)
+          return false;
+  }
     </script>  
 </html>
